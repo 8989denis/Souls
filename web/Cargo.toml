@@ -1,0 +1,12 @@
+[package]
+name = "web"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+dioxus = { workspace = true, features = ["web"] }
+ui = { path = "../ui", features = ["web"] }
+
+[features]
+default = []
