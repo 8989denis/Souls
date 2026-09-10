@@ -1,0 +1,15 @@
+[package]
+name = "native"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+dioxus-native = { workspace = true }
+ui = { path = "../ui", features = ["native"] }
+[target.'cfg(target_os = "android")'.dependencies]
+android-activity = { version = "0.6.1", features = ["native-activity"] }
+android_logger = "0.14"
+log = "0.4"
+[features]
+default = []
