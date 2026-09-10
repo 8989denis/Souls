@@ -1,0 +1,52 @@
+[workspace]
+resolver = "2"
+members = ["api", "native", "ui", "web"]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2024"
+authors = ["Denis Kontek <deniskontek@securesouls.com>"]
+
+[workspace.dependencies]
+tracing = "0.1"
+dioxus = { version = "0.7.10" }
+dioxus-native = { version = "0.7.10", features = ["prelude"] }
+tokio = { version = "1" }
+# borsh = { version = "1", features = ["derive"] }
+
+# ============================================================
+# PROFILES
+# ============================================================
+
+# Development profile — used by `cargo build` and `dx serve` (default)
+[profile.dev]
+opt-level = 0            # No optimization — fastest compile, slowest runtime
+debug = true             # Keep debug symbols — for breakpoints
+debug-assertions = true  # Enable debug_assert!() — catches bugs early
+overflow-checks = true   # Panic on integer overflow — catches bugs
+lto = false              # No link-time optimization — faster builds
+codegen-units = 256      # Max parallelism — fastest compilation
+incremental = true       # Incremental compilation — fast rebuilds
+panic = "unwind"         # Unwind on panic — needed by async runtimes
+strip = "none"           # Keep all symbols — for debugging
+
+# Dependencies compiled with optimization even in dev.
+# Without this, Blitz/WGPU/Stylo/Vello would be unusably slow.
+[profile.dev.package."*"]
+opt-level = 2            # Optimize dependencies — tolerable dev performance
+debug = false            # No debug symbols for deps — smaller, faster
+codegen-units = 16       # Balance between parallelism and optimization
+incremental = false      # Deps rarely change — no need for incremental
+
+
+# Release profile — used by `cargo build --release` and `dx build --release`
+[profile.release]
+opt-level = 3            # Maximum optimization — fastest runtime
+debug = false            # No debug symbols — smaller binary
+debug-assertions = false # Disable debug_assert!() — faster
+overflow-checks = false  # Disable overflow checks — faster
+lto = "fat"              # Full link-time optimization — best performance
+codegen-units = 1        # Single codegen unit — best optimization
+incremental = false      # No incremental — pointless for release
+panic = "abort"          # Abort on panic — smaller, faster
+strip = "symbols"        # Strip all symbols — smallest binary

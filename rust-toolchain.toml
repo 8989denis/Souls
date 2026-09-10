@@ -1,0 +1,18 @@
+[toolchain]
+channel = "stable"
+components = ["rustfmt", "clippy", "rust-src"]
+targets = [
+    # Desktop
+    "x86_64-unknown-linux-gnu",     # Linux 64-bit (glibc)
+    "x86_64-unknown-linux-musl",    # Linux 64-bit (musl, statyczne binarki)
+    #"x86_64-pc-windows-msvc",       # Windows 64-bit (MSVC)
+    #"x86_64-apple-darwin",          # macOS Intel
+    #"aarch64-apple-darwin",         # macOS Apple Silicon (M1/M2/M3)
+    # Android
+    "aarch64-linux-android",        # Android ARM64 (większość telefonów)
+    "armv7-linux-androideabi",      # Android ARMv7 (starsze telefony)
+    "x86_64-linux-android",         # Android emulator x86_64
+    # Web
+    "wasm32-unknown-unknown",       # WebAssembly (Dioxus web)
+]
+profile = "minimal"
