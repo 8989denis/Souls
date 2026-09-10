@@ -1,0 +1,13 @@
+[package]
+name = "ui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+dioxus = { workspace = true, optional = true }
+dioxus-native = { workspace = true, optional = true }
+
+[features]
+web = ["dep:dioxus", "dioxus/web"]
+native = ["dep:dioxus-native"]
