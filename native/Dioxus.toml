@@ -1,0 +1,91 @@
+[application]
+name = "Souls"
+tailwind_input = "tailwind.css"
+tailwind_output = "../ui/assets/tailwind.css"
+[web.app]
+title = "Souls"
+[bundle]
+# ─── Required ────────────────────────────────────────────────
+identifier = "com.securesouls.souls"
+updater_url = "https://github.com/8989denis/Souls/releases/latest/download"
+# ─── Primary Metadata ────────────────────────────────────
+name = "Souls"
+version = "0.0.1"
+publisher = "Denis Kontek"
+copyright = "© 2026 Denis Kontek"
+license = "MIT"
+homepage = "https://github.com/8989denis/Souls"
+repository = "https://github.com/8989denis/Souls"
+authors = ["Denis Kontek <deniskontek@securesouls.com>"]
+
+# ─── Descriptors ──────────────────────────────────────────────────
+short_description = "Decentralized P2P messenger"
+long_description = """
+Souls is a decentralized, peer-to-peer messenger built with Rust,
+Dioxus, and libp2p. No central servers, no censorship, end-to-end
+encrypted. Your messages stay between you and the people you talk to.
+"""
+category = "Network"
+icon = [] # Icons
+# resources = ["assets/fonts/*", "assets/images/*"] # Files inside Binary
+# external_bin = ["bin/relay"] # outside Libraries
+
+[bundle.linux]
+ desktop_file = "Souls.desktop"
+ime_types = [
+    "x-scheme-handler/souls",   # souls://...
+    "application/x-souls",       # files .souls
+]
+
+[bundle.macos]
+signing_identity = "Developer ID Application: Denis (TEAMID)"
+entitlements = "path/to/entitlements.plist"
+minimum_system_version = "11.0"
+category = "public.app-category.social-networking"
+
+[bundle.windows]
+signing_identity = "Denis Kontek|Secure Your Soul"
+#wix = { language = "en-US" }
+nsis = { languages = ["English", "Polish"] }
+manufacturer = "Denis Kontek"
+install_mode = "perUser"
+
+[bundle.android]
+package = "com.securesouls.souls" # (reverse-DNS) Must be Unique to Google Play
+version_code = 1
+min_sdk_version = 23   # Android 6.0
+target_sdk_version = 37   # Android 16
+# jks_file = "debug.keystore"
+# jks_password = "android"
+# key_alias = "androiddebugkey"
+# key_password = "android"
+jks_file = "release.jks"
+jks_password = "TWOJE_HASŁO"
+key_alias = "upload-key"
+key_password = "TWOJE_HASŁO"
+# permissions = [
+#     "android.permission.INTERNET",
+#     "android.permission.ACCESS_NETWORK_STATE",
+#     "android.permission.ACCESS_WIFI_STATE",
+#     "android.permission.FOREGROUND_SERVICE",
+#     "android.permission.POST_NOTIFICATIONS",
+#     # Dla P2P:
+#     "android.permission.CHANGE_NETWORK_STATE",
+#     "android.permission.CHANGE_WIFI_STATE",
+#     "android.permission.NEARBY_WIFI_DEVICES",   # Android 13+
+# ]
+
+# features = [
+#     "android.hardware.camera",
+#     "android.hardware.microphone",
+# ]
+
+# activities = [...]
+# services = [...]
+# receivers = [...]
+
+[bundle.ios]
+bundle_identifier = "com.securesouls.souls"
+version = "0.0.1"
+build_number = "1"
+minimum_os_version = "14.0"

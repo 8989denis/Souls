@@ -4,12 +4,22 @@ version.workspace = true
 edition.workspace = true
 authors.workspace = true
 
-[dependencies]
-dioxus-native = { workspace = true }
-ui = { path = "../ui", features = ["native"] }
+[lib]
+name = "main"
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[[bin]]
+name = "Souls"
+path = "src/main.rs"
+
 [target.'cfg(target_os = "android")'.dependencies]
+dioxus = { workspace = true, features = ["mobile"] }
+ui = { path = "../ui", features = ["mobile"] }
 android-activity = { version = "0.6.1", features = ["native-activity"] }
 android_logger = "0.14"
 log = "0.4"
-[features]
-default = []
+jni = "0.22"
+[target.'cfg(not(target_os = "android"))'.dependencies]
+dioxus = { workspace = true, features = ["desktop"] }
+ui = { path = "../ui", features = ["desktop"] }

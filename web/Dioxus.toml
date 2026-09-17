@@ -1,0 +1,6 @@
+[application]
+name = "Souls"
+tailwind_input = "tailwind.css"
+tailwind_output = "../ui/assets/tailwind.css"
+[web.app]
+title = "Souls"
