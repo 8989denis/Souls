@@ -5,9 +5,10 @@ edition.workspace = true
 authors.workspace = true
 
 [dependencies]
-dioxus = { workspace = true, optional = true }
-dioxus-native = { workspace = true, optional = true }
+dioxus = { workspace = true, features = ["router"] }
 
 [features]
-web = ["dep:dioxus", "dioxus/web"]
-native = ["dep:dioxus-native"]
+default = []
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]
